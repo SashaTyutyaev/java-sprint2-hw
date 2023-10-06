@@ -4,7 +4,7 @@ import java.util.HashMap;
 public class Main {
 
     public static void main(String[] args) {
-            YearReport yearReport = new YearReport();
+        YearReport yearReport = new YearReport();
             HashMap<Integer,MonthReport> checkReport = new HashMap<>();
             Scanner scanner = new Scanner(System.in);
             Checker checker = new Checker(checkReport,yearReport);
@@ -19,7 +19,9 @@ public class Main {
                 } else if (command == 3){
                     checker.checkerReport();
                 } else if(command == 4){
-                    checker.printMonthAndYearInfo();
+                    checker.printMonthInfo();
+                } else if(command == 5){
+                    checker.printYearInfo();
                 } else if(command == 0){
                     System.out.println("Конец программы");
                     break;
@@ -35,7 +37,8 @@ public class Main {
         System.out.println("1 - Считать все месячные отчеты");
         System.out.println("2 - Считать годовой отчет");
         System.out.println("3 - Сверить отчеты");
-        System.out.println("4 - Вывести информацию обо всех отчетах");
+        System.out.println("4 - Вывести информацию о месячных отчетах");
+        System.out.println("5 - Вывести информацию о годовом отчете");
         System.out.println("0 - Выход");
     }
 

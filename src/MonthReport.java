@@ -46,7 +46,7 @@ public class MonthReport {
         Month maxItemName = null;
         for (Month month : months) {
             if (months.isEmpty()){
-                System.out.println("Ошибка! Данный месяца не считаны.");
+                System.out.println("Ошибка! Данные месяца не считаны.");
                 continue;
             }
             if (!month.isExpense) {
