@@ -45,14 +45,19 @@ public class MonthReport {
     public Month getTopProduct() {
         Month maxItemName = null;
         for (Month month : months) {
-            if (!month.isExpense){
-                if (maxItemName == null){
+            if (months.isEmpty()){
+                System.out.println("Ошибка! Данный месяца не считаны.");
+                continue;
+            }
+            if (!month.isExpense) {
+                if (maxItemName == null) {
                     maxItemName = month;
                     continue;
 
                 }
-                if ((maxItemName.unitPrice * maxItemName.quantity) < (month.unitPrice * month.quantity));
-                maxItemName = month;
+                if ((maxItemName.unitPrice * maxItemName.quantity) < (month.unitPrice * month.quantity)) {
+                    maxItemName = month;
+                }
             }
         }
         return maxItemName;
