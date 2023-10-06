@@ -9,6 +9,7 @@ public class Checker {
     boolean isLoadedMonth = false;
     boolean isLoadedYear = false;
 
+
     public Checker(HashMap<Integer, MonthReport> checkReport, YearReport yearReport) {
         this.checkReport = checkReport;
         this.yearReport = yearReport;
@@ -69,10 +70,14 @@ public class Checker {
         if (!isLoadedMonth) {
             System.out.println("Сначала считайте все месячные отчеты");
         } else {
-            for (Integer month : checkReport.keySet()) {
-                if (checkReport.keySet().isEmpty()){
-                    System.out.println("Ошибка! Месячные данные не считаны.");
+                int checkMonth = check();
+                if (checkMonth == 0){
+                    System.out.println("Считаем данные...");
+                } else {
+                    System.out.println("Ошибка! Отсутсвуют данные за месяц №" + checkMonth);
+                    return;
                 }
+                for (Integer month : checkReport.keySet()) {
                 System.out.println("Месяц № " + month);
                 MonthReport report = checkReport.get(month);
                 Month monthRep = report.getTopProduct();
