@@ -4,15 +4,13 @@ public class Checker {
     MonthReport monthReport1 = new MonthReport();
     MonthReport monthReport2 = new MonthReport();
     MonthReport monthReport3 = new MonthReport();
-    HashMap<Integer, MonthReport> checkReport;
-    YearReport yearReport;
+    HashMap<Integer, MonthReport> checkReport = new HashMap<>();
+    YearReport yearReport = new YearReport();
     boolean isLoadedMonth = false;
     boolean isLoadedYear = false;
 
 
-    public Checker(HashMap<Integer, MonthReport> checkReport, YearReport yearReport) {
-        this.checkReport = checkReport;
-        this.yearReport = yearReport;
+    public Checker() {
     }
 
     public int check() {

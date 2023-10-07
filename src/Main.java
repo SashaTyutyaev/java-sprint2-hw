@@ -4,10 +4,8 @@ import java.util.HashMap;
 public class Main {
 
     public static void main(String[] args) {
-        YearReport yearReport = new YearReport();
-            HashMap<Integer,MonthReport> checkReport = new HashMap<>();
             Scanner scanner = new Scanner(System.in);
-            Checker checker = new Checker(checkReport,yearReport);
+            Checker checker = new Checker();
 
             while (true){
                 printMenu();

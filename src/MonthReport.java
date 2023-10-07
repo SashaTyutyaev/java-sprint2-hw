@@ -1,16 +1,15 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-
-
 public class MonthReport {
     FileReader fileReader = new FileReader();
+    HashMap<Integer, MonthReport> checkReport = new HashMap<>();
 
     public ArrayList<Month> months = new ArrayList<>();
 
-    public void loadFile(String path){
-        ArrayList<String> lines = fileReader.readFileContents(path);
-            for (int i = 1; i < lines.size(); i++) {
-                String[] parts = lines.get(i).split(",");
+    public void loadFile(String filename) {
+            ArrayList<String> lines = fileReader.readFileContents(filename);
+            for (int j = 1; j < lines.size(); j++) {
+                String[] parts = lines.get(j).split(",");
                 String itemName = parts[0];
                 Boolean isExpense = Boolean.parseBoolean(parts[1]);
                 int quantity = Integer.parseInt(parts[2]);
@@ -19,7 +18,9 @@ public class MonthReport {
                 months.add(month);
 
             }
+
         }
+
 
 
     public int getExpenses(){
