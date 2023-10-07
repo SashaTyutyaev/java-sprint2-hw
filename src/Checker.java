@@ -72,7 +72,7 @@ public class Checker {
                 if (checkMonth == 0){
                     System.out.println("Считаем данные...");
                 } else {
-                    System.out.println("Ошибка! Отсутсвуют данные за месяц №" + checkMonth);
+                    System.out.println("Ошибка! Отсутсвуют файл с месяцем или месяцами.");
                     return;
                 }
                 for (Integer month : checkReport.keySet()) {
