@@ -17,7 +17,6 @@ public class Checker {
     }
 
     public int check() {
-        for (int i = 1; i < 4; i++) {
             for (Integer month : checkReport.keySet()) {
                 int expensesFromMonth = checkReport.get(month).getExpenses();
                 int incomeFromMonth = checkReport.get(month).getIncome();
@@ -27,7 +26,6 @@ public class Checker {
                     return month;
                 }
             }
-        }
         return 0;
     }
 
