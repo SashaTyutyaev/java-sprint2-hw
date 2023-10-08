@@ -34,7 +34,9 @@ public class Checker {
             monthReport = new MonthReport();
             String filename = "m.20210" + i + ".csv";
             monthReport.loadFile(filename);
-            checkReport.put(i,monthReport);
+            if (monthReport.months.size() > 0) {
+                checkReport.put(i, monthReport);
+            }
         }
         if (!checkReport.isEmpty()) {
             isLoadedMonth = true;
@@ -51,6 +53,10 @@ public class Checker {
     }
 
     public void checkerReport() {
+        if(checkReport.size() <= 2){
+            System.out.println("Какой то из месяцев отсутствует");
+            return;
+        }
         if (!isLoadedMonth) {
             System.out.println("Сначала считайте месячные отчеты");
             return;
@@ -64,7 +70,6 @@ public class Checker {
             } else {
                 System.out.println("Ошибка в месяце № " + checkAccess);
             }
-
         }
     }
 
@@ -83,10 +88,8 @@ public class Checker {
     public void printMonthInfo() {
         if (!isLoadedMonth) {
             System.out.println("Сначала считайте все месячные отчеты");
-        } else {
-            isFileExists();
-            return;
         }
+            if (checkReport.size() == 3){
             for (Integer month : checkReport.keySet()) {
                 System.out.println("Месяц № " + month);
                 MonthReport report = checkReport.get(month);
@@ -97,6 +100,9 @@ public class Checker {
                 int sum2 = monthRep2.unitPrice * monthRep2.quantity;
                 System.out.println("Самая большая трата " + monthRep2.itemName + " на сумму " + sum2);
             }
+        } else {
+            System.out.println("Ошибка! Отчеты отсутсвуют");
+        }
         }
 
 
