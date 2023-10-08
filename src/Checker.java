@@ -1,38 +1,43 @@
+import java.io.File;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Checker {
-    MonthReport monthReport1 = new MonthReport();
-    MonthReport monthReport2 = new MonthReport();
-    MonthReport monthReport3 = new MonthReport();
+    MonthReport monthReport = new MonthReport();
     HashMap<Integer, MonthReport> checkReport = new HashMap<>();
     YearReport yearReport = new YearReport();
     boolean isLoadedMonth = false;
     boolean isLoadedYear = false;
 
 
+
+
     public Checker() {
     }
 
     public int check() {
-        for (Integer month : checkReport.keySet()) {
-            int expensesFromMonth = checkReport.get(month).getExpenses();
-            int incomeFromMonth = checkReport.get(month).getIncome();
-            int expensesFromYear = yearReport.getYearPerMonthExpenses(month);
-            int incomeFromYear = yearReport.getYearPerMonthIncome(month);
-            if (expensesFromMonth != expensesFromYear || incomeFromMonth != incomeFromYear) {
-                return month;
+        for (int i = 1; i < 4; i++) {
+            for (Integer month : checkReport.keySet()) {
+                int expensesFromMonth = checkReport.get(month).getExpenses();
+                int incomeFromMonth = checkReport.get(month).getIncome();
+                int expensesFromYear = yearReport.getYearPerMonthExpenses(month);
+                int incomeFromYear = yearReport.getYearPerMonthIncome(month);
+                if (expensesFromMonth != expensesFromYear || incomeFromMonth != incomeFromYear) {
+                    return month;
+                }
             }
         }
         return 0;
     }
 
     public void scanMonth() {
-        monthReport1.loadFile("m.202101.csv");
-        monthReport2.loadFile("m.202102.csv");
-        monthReport3.loadFile("m.202103.csv");
-        checkReport.put(1, monthReport1);
-        checkReport.put(2, monthReport2);
-        checkReport.put(3, monthReport3);
+        for (int i = 1;i < 4;i++) {
+            monthReport = new MonthReport();
+            String filename = "m.20210" + i + ".csv";
+            monthReport.loadFile(filename);
+            checkReport.put(i,monthReport);
+        }
         if (!checkReport.isEmpty()) {
             isLoadedMonth = true;
             System.out.println("Месячные отчеты считаны!");
@@ -61,21 +66,37 @@ public class Checker {
             } else {
                 System.out.println("Ошибка в месяце № " + checkAccess);
             }
+
         }
     }
+
+
 
     public void printMonthInfo() {
         if (!isLoadedMonth) {
             System.out.println("Сначала считайте все месячные отчеты");
         } else {
-                int checkMonth = check();
-                if (checkMonth == 0){
-                    System.out.println("Считаем данные...");
-                } else {
-                    System.out.println("Ошибка! Отсутсвуют файл с месяцем или месяцами.");
-                    return;
-                }
-                for (Integer month : checkReport.keySet()) {
+            String pathname1 = "resources\\m.202101.csv";
+            String pathname2 = "resources\\m.202102.csv";
+            String pathname3 = "resources\\m.202103.csv";
+
+            File file1 = new File(pathname1);
+            File file2 = new File(pathname2);
+            File file3 = new File(pathname3);
+
+            if (!file1.isFile()){
+                System.out.println("Ошибка! Отсутсвуют данные за месяц №1");
+                return;
+            }
+            if (!file2.exists()){
+                System.out.println("Ошибка! Отсутсвуют данные за месяц №2");
+                return;
+            }
+            if (!file3.exists()){
+                System.out.println("Ошибка! Отсутсвуют данные за месяц №3");
+                return;
+            }
+            for (Integer month : checkReport.keySet()) {
                 System.out.println("Месяц № " + month);
                 MonthReport report = checkReport.get(month);
                 Month monthRep = report.getTopProduct();

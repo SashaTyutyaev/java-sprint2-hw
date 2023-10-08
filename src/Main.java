@@ -4,6 +4,7 @@ import java.util.HashMap;
 public class Main {
 
     public static void main(String[] args) {
+        MonthReport monthReport = new MonthReport();
             Scanner scanner = new Scanner(System.in);
             Checker checker = new Checker();
 
