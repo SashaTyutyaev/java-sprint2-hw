@@ -68,32 +68,25 @@ public class Checker {
         }
     }
 
+    public void isFileExists(){
+        for (int i = 1; i < 4;i ++){
+            String pathname = "resources/m.20210" + i + ".csv";
+            File file = new File(pathname);
+            if (file.length() == 0){
+                System.out.println("Ошибка! Отсутсвуют данные за месяц №" + i);
+                return;
+            }
+        }
+    }
 
 
     public void printMonthInfo() {
         if (!isLoadedMonth) {
             System.out.println("Сначала считайте все месячные отчеты");
         } else {
-            String pathname1 = "resources\\m.202101.csv";
-            String pathname2 = "resources\\m.202102.csv";
-            String pathname3 = "resources\\m.202103.csv";
-
-            File file1 = new File(pathname1);
-            File file2 = new File(pathname2);
-            File file3 = new File(pathname3);
-
-            if (!file1.isFile()){
-                System.out.println("Ошибка! Отсутсвуют данные за месяц №1");
-                return;
-            }
-            if (!file2.exists()){
-                System.out.println("Ошибка! Отсутсвуют данные за месяц №2");
-                return;
-            }
-            if (!file3.exists()){
-                System.out.println("Ошибка! Отсутсвуют данные за месяц №3");
-                return;
-            }
+            isFileExists();
+            return;
+        }
             for (Integer month : checkReport.keySet()) {
                 System.out.println("Месяц № " + month);
                 MonthReport report = checkReport.get(month);
@@ -105,7 +98,8 @@ public class Checker {
                 System.out.println("Самая большая трата " + monthRep2.itemName + " на сумму " + sum2);
             }
         }
-    }
+
+
 
         public void printYearInfo() {
             if (!isLoadedYear) {
